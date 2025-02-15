@@ -13,4 +13,12 @@ print(listings_df.head())
 print(listings_df.info())
 print(listings_df.shape)
 
-# Check for missing values
+# find unique location in the dataset 
+print(listings_df['host_location'].unique())
+
+
+# only looking at Asheville, NC, dropping all other locations including empty ones 
+listings_df = listings_df[listings_df['host_location'] == 'Asheville, NC']
+
+# drop rows where price value is missing 
+listings_df = listings_df[listings_df['price'] != 'N/A']
