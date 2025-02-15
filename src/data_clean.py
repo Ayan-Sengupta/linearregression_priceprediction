@@ -21,4 +21,16 @@ print(listings_df['host_location'].unique())
 listings_df = listings_df[listings_df['host_location'] == 'Asheville, NC']
 
 # drop rows where price value is missing 
-listings_df = listings_df[listings_df['price'] != 'N/A']
+listings_df = listings_df[listings_df['price'].notna()]
+
+# check if price column has any missing values 
+print(listings_df['price'].isnull().sum())
+
+# if no missing value, write the df to a new csv file
+if listings_df['price'].isnull().sum() == 0:
+    listings_df.to_csv('data/processed/listings_clean.csv', index=False)
+
+
+
+
+
