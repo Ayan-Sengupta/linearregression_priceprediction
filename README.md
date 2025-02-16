@@ -13,4 +13,6 @@ Structure:
 
 ## THIS IS A WIP
 
+## 2/16/2025
+
 ## TODO - add docker file and requirements.txt
