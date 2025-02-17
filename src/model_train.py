@@ -41,6 +41,7 @@ percentage_error = (rmse / mean_price) * 100
 print(f"Root Mean Squared Error: {rmse:.2f}")
 print(f"Mean Price: ${mean_price:.2f}")
 print(f"Percentage Error: {percentage_error:.2f}%")
+print(f"R squared: {model.score(X_test_scaled, y_test):.2f}")
 
 # Model coefficients
 print("Model Coefficients (Weights):", model.coef_) # weights
