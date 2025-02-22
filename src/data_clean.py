@@ -15,13 +15,6 @@ listings_df = listings_df[listings_df['price'].notna()]
 # check if price column has any missing values 
 price_nullFlag = listings_df['price'].isnull().sum()
 
-
-# Create a dummy variable column to indicate if review_scores_rating is missing
-listings_df['has_review_scores'] = listings_df['review_scores_rating'].notna().astype(int)
-
-# replace missing values in review_scores_rating with a 0 
-listings_df['review_scores_rating'] = listings_df['review_scores_rating'].fillna(0)
-
 # convert price column to float and remove the $ sign
 listings_df['price'] = listings_df['price'].replace(r'[\$,]', '', regex=True).astype(float)
 
@@ -35,6 +28,13 @@ upper_bound = Q3 + 1.5 * IQR
 # Remove outliers
 listings_df = listings_df[(listings_df['price'] >= lower_bound) & 
                          (listings_df['price'] <= upper_bound)]
+
+# replace missing values in review_scores_rating with a 0 
+listings_df['review_scores_rating'] = listings_df['review_scores_rating'].fillna(0)
+
+# Create a dummy variable column to indicate if review_scores_rating is missing
+listings_df['has_review_scores'] = (listings_df['review_scores_rating'] > 0).astype(int)
+
 
 # check if accommodates, bathrooms, bedrooms, minumum_nights and review_score_ratings columns have any missing values
 missing_values = [
